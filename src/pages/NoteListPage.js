@@ -3,11 +3,10 @@ import React, { useState, useEffect  } from 'react'
 import ListItem from '../components/ListItem'
 import AddButton from '../components/AddButton'
 const NoteListPage = () => {
-  const [notes, setNotes] = useState([]); // notes will be of array type []
-  // use useEffect to get data from json database
+  const [notes, setNotes] = useState([]); 
   useEffect(() => {
     getNotes();
-  }, [notes]); //only fire off on first render and not in other renderes. therefore we have to add it everytime notes change, then changes will happen automatically without loading the page
+  }, [notes]); 
 
   let getNotes = async () => {
     // use fetch api to get data from json

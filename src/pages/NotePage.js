@@ -11,7 +11,7 @@ const NotePage = () => {
 
   useEffect(() => {
     getNote();
-  }, [id]);
+  });
 
   let getNote = async () => {
     if(id === 'new'){return; }// stop don't fetch the api
@@ -21,7 +21,7 @@ const NotePage = () => {
   };
 
   let updateNote = async () => {
-    await fetch(`http://localhost:8000/notes/${id}`, {
+    await fetch(`api/notes/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -30,15 +30,7 @@ const NotePage = () => {
     });
   };
 
-// let createNote = async () => {
-//   await fetch(`http://localhost:8000/notes/`, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({ ...note, updated: new Date() }),
-//   });
-// };
+
 let createNote = async () => {
   try {
     await fetch(`http://localhost:8000/notes/`, {
@@ -65,15 +57,15 @@ let createNote = async () => {
       },
       body: JSON.stringify(note),
     });
-    navigate('/'); // we have to add this else when delete it won't get out of the page (won't go to note list page)
+    navigate('/');
   };
 
   const handleSubmit = () => {
     // stoped here
-    fetch("http://localhost:8000/notes") // Replace with the correct endpoint
-      .then((response) => response.json()) //convert json format to js object
-      .then((data) => { // data is array of object to access the first id we do data[0].id 
-        // Check if the ID exists in the JSON data
+    fetch("http://localhost:8000/notes") 
+      .then((response) => response.json()) 
+      .then((data) => {  
+  
         let idExist = false;
     
         for(let i=0; i<data.length; i++){
@@ -116,16 +108,6 @@ let createNote = async () => {
           <button onClick={handleSubmit}> Done </button>
         )}
       </div>
-      {/* {note || id === 'new' ? (
-        <textarea
-          onChange={(e) => {
-            setNote({ ...note, body: e.target.value });
-          }}
-          value={note.body}
-        ></textarea>
-      ) : (
-        <p>Note with ID {id} not found</p>
-      )} */}
       <textarea
         onChange={(e) => {
           setNote({ ...note, body: e.target.value });
@@ -133,7 +115,7 @@ let createNote = async () => {
         value={note ? note.body : ''} 
       ></textarea>
       {/* If you have nested routes, you can render them here */}
-      <Outlet />
+     <Outlet />
     </div>
   );
 };
