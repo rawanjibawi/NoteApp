@@ -5,5 +5,4 @@ It has the following characteristics
 1. Create a Note
 2. Update a Note
 3. Delete a Note
-4. Note List Page
-5. Note Page
+4. Router to navigate between pages
