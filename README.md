@@ -1,6 +1,6 @@
 # Note App
 
-## Django and React app where you fetch data using Restful API
+##  and React app where you fetch data using JSON Database
 It has the following characteristics
 1. Create a Note
 2. Update a Note
